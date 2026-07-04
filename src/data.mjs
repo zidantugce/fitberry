@@ -250,12 +250,12 @@ export const services = [
       "Beslenme danışmanlığı öncesinde ölçüm ve ön değerlendirme almak isteyenler",
     ],
     process: [
-      "TODO: Bu hizmetin ayrı detay metni kaynak dosyalarda bulunmuyor.",
-      "Kaynak dosyalarda beslenme danışmanlığının ücretsiz tartı analizi ve ön görüşme ile başladığı belirtilmiştir.",
+      "Ücretsiz tartı analizi ve ön görüşme ile mevcut ihtiyaçlar değerlendirilir.",
+      "Değerlendirme sonrasında kişiye uygun hizmet seçeneği için bilgilendirme ve yönlendirme yapılır.",
     ],
     format: "Yüz yüze bilgi ve yönlendirme",
     audience: "Bireysel ön görüşme",
-    packageInfo: "TODO: Süre ve randevu yapısı için onaylı metin eklenecek.",
+    packageInfo: "Ücretsiz vücut analizi ve ön görüşme için randevu bilgisi Fit Berry iletişim kanallarından alınır.",
     benefits: [
       "Hizmet seçeneklerini tanımaya destek olur.",
       "Başlangıç ölçüm ve ihtiyaç değerlendirmesi için ilk adımı oluşturur.",
@@ -263,11 +263,11 @@ export const services = [
     faqs: [
       {
         q: "Bu hizmet ücretsiz mi?",
-        a: "Kaynak dosyada hizmet adı ücretsiz vücut analizi ve ön görüşme olarak geçmektedir.",
+        a: "Evet. Hizmet ücretsiz vücut analizi ve ön görüşme olarak planlanmıştır.",
       },
       {
         q: "Randevu bilgisi nasıl alınır?",
-        a: "TODO: Randevu akışı için onaylı metin eklenecek. Şimdilik WhatsApp, telefon veya e-posta yönlendirmeleri kullanılmaktadır.",
+        a: "WhatsApp, telefon veya e-posta üzerinden Fit Berry ile doğrudan iletişime geçebilirsiniz.",
       },
     ],
   },

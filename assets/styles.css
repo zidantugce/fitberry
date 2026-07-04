@@ -316,6 +316,36 @@ button {
   min-height: calc(78vh - var(--header-height));
   display: flex;
   align-items: center;
+  overflow: hidden;
+  background-image: none;
+  background-color: var(--green-900);
+}
+
+.home-hero::before {
+  content: "";
+  position: absolute;
+  inset: -24px;
+  z-index: -2;
+  background-image: var(--hero-image);
+  background-position: center;
+  background-size: cover;
+  filter: blur(10px);
+  opacity: 0.78;
+  transform: scale(1.04);
+}
+
+.home-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(24, 63, 53, 0.9), rgba(24, 63, 53, 0.68) 52%, rgba(143, 23, 50, 0.32)),
+    linear-gradient(0deg, rgba(24, 63, 53, 0.32), rgba(24, 63, 53, 0.06));
+}
+
+.home-hero .hero-shade {
+  display: none;
 }
 
 .hero-shade {

@@ -1,6 +1,6 @@
 import { assets, gallery, reviews, services, site, team } from "./data.mjs";
 
-const ASSET_VERSION = "20260704-2";
+const ASSET_VERSION = "20260705-1";
 
 export function esc(value = "") {
   return String(value)
@@ -13,6 +13,10 @@ export function esc(value = "") {
 
 export function asset(path, prefix = "") {
   return `${prefix}${path}`;
+}
+
+export function cssImage(path) {
+  return path.replace(/^assets\//, "");
 }
 
 export function url(path = "", prefix = "") {
@@ -32,8 +36,8 @@ export function buttonLink(label, href, variant = "primary", extra = "") {
   return `<a class="btn btn-${variant} ${extra}" href="${esc(href)}">${esc(label)}</a>`;
 }
 
-export function todoNote(text) {
-  return `<div class="todo-note"><strong>TODO:</strong> ${esc(text.replace(/^TODO:\s*/i, ""))}</div>`;
+export function noteBlock(text) {
+  return `<div class="todo-note"><strong>Not:</strong> ${esc(text.replace(/^NOT:\s*/i, ""))}</div>`;
 }
 
 export function layout({ title, description, prefix = "", current = "", children = "" }) {
@@ -165,7 +169,7 @@ export function floatingWhatsapp() {
 }
 
 export function pageHero({ kicker = "", title, text = "", imagePath = gallery[2].file, prefix = "", compact = false }) {
-  return `<section class="page-hero ${compact ? "page-hero-compact" : ""}" style="--hero-image: url('${asset(imagePath, prefix)}')">
+  return `<section class="page-hero ${compact ? "page-hero-compact" : ""}" style="--hero-image: url('${cssImage(imagePath)}')">
     <div class="hero-shade"></div>
     <div class="container page-hero-content">
       ${kicker ? `<p class="kicker">${esc(kicker)}</p>` : ""}

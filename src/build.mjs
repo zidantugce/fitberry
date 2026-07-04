@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import {
   asset,
   buttonLink,
+  cssImage,
   ctaBand,
   esc,
   galleryGrid,
@@ -19,7 +20,7 @@ import {
   serviceGrid,
   statStrip,
   teamGrid,
-  todoNote,
+  noteBlock,
   url,
 } from "./components.mjs";
 import {
@@ -64,7 +65,7 @@ function page(route, meta, current, children) {
 function homePage() {
   const prefix = "";
   const children = `
-    <section class="home-hero" style="--hero-image: url('${asset(gallery[2].file, prefix)}')">
+    <section class="home-hero" style="--hero-image: url('${cssImage(gallery[2].file)}')">
       <div class="hero-shade"></div>
       <div class="container hero-content">
         ${image(assets.logoWide, "Fit Berry logosu", prefix, "hero-logo", "eager")}
@@ -223,11 +224,11 @@ function serviceDetailPage(service) {
     title: `${service.title} | Fit Berry Sağlıklı Yaşam Merkezi`,
     description: service.summary,
   };
-  const packageMarkup = service.packageInfo.startsWith("TODO:")
-    ? todoNote(service.packageInfo)
+  const packageMarkup = service.packageInfo.startsWith("NOT:")
+    ? noteBlock(service.packageInfo)
     : `<span>${esc(service.packageInfo)}</span>`;
   const processItems = service.process
-    .map((item) => (item.startsWith("TODO:") ? todoNote(item) : `<li>${esc(item)}</li>`))
+    .map((item) => (item.startsWith("NOT:") ? noteBlock(item) : `<li>${esc(item)}</li>`))
     .join("");
   const children = `
     ${pageHero({
@@ -498,7 +499,6 @@ function contactPage() {
               <a href="${site.instagram}" target="_blank" rel="noopener">Instagram</a>
               <a href="${site.facebook}" target="_blank" rel="noopener">Facebook</a>
             </address>
-            ${todoNote("Diğer sosyal medya bağlantıları için kaynak dosyalarda ek bağlantı bulunmuyor.")}
           </article>
         </div>
         <div class="map-frame" aria-label="Google Haritalar konumu">
