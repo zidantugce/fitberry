@@ -1,6 +1,6 @@
 import { assets, gallery, reviews, services, site, team } from "./data.mjs";
 
-const ASSET_VERSION = "20260705-1";
+const ASSET_VERSION = "20260709-1";
 
 export function esc(value = "") {
   return String(value)
@@ -51,6 +51,9 @@ export function layout({ title, description, prefix = "", current = "", children
     <meta name="theme-color" content="#315f4f">
     <link rel="icon" type="image/png" href="${asset(assets.favicon, prefix)}">
     <link rel="preload" as="image" href="${asset(gallery[2].file, prefix)}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="${asset(`assets/styles.css?v=${ASSET_VERSION}`, prefix)}">
   </head>
   <body data-current="${esc(current)}">
@@ -123,8 +126,8 @@ export function footer(prefix = "") {
         ${image(assets.logo, "Fit Berry logosu", prefix, "footer-logo")}
         <p>Beslenme, pilates ve barre hizmetlerini bilimsel, kişiye özel ve sürdürülebilir yaklaşımla sunan sağlıklı yaşam merkezi.</p>
         <div class="social-links" aria-label="Sosyal medya bağlantıları">
-          <a href="${site.instagram}" target="_blank" rel="noopener">Instagram</a>
-          <a href="${site.facebook}" target="_blank" rel="noopener">Facebook</a>
+          <a class="icon-link" href="${site.instagram}" target="_blank" rel="noopener">${icon("instagram")}<span>Instagram</span></a>
+          <a class="icon-link" href="${site.facebook}" target="_blank" rel="noopener">${icon("facebook")}<span>Facebook</span></a>
         </div>
       </section>
       <section>
@@ -148,20 +151,38 @@ export function footer(prefix = "") {
       <section>
         <h2>İletişim</h2>
         <address>
-          <a href="${site.mapUrl}" target="_blank" rel="noopener">${esc(site.address)}</a>
-          <a href="${site.phoneHref}">${site.phoneDisplay}</a>
-          <a href="${site.emailHref}">${site.email}</a>
+          <a class="icon-link" href="${site.mapUrl}" target="_blank" rel="noopener">${icon("location")}<span>${esc(site.address)}</span></a>
+          <a class="icon-link" href="${site.phoneHref}">${icon("phone")}<span>${site.phoneDisplay}</span></a>
+          <a class="icon-link" href="${site.emailHref}">${icon("mail")}<span>${site.email}</span></a>
         </address>
         <div class="footer-hours">
-          ${site.hours.map((hour) => `<span>${esc(hour)}</span>`).join("")}
+          ${site.hours.map((hour) => `<span class="icon-line">${icon("clock")}<span>${esc(hour)}</span></span>`).join("")}
         </div>
       </section>
     </div>
     <div class="container footer-bottom">
       <p>© ${new Date().getFullYear()} Fit Berry Sağlıklı Yaşam Merkezi. Tüm hakları saklıdır.</p>
-      <a href="${site.mapUrl}" target="_blank" rel="noopener">Google Haritalar</a>
+      <a class="icon-link" href="${site.mapUrl}" target="_blank" rel="noopener">${icon("location")}<span>Google Haritalar</span></a>
     </div>
   </footer>`;
+}
+
+function icon(name) {
+  const icons = {
+    instagram:
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1"></circle></svg>',
+    facebook:
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3c-3 0-5 2-5 5v3H6v4h3v5h4v-5h3l1-4h-4V9c0-.6.4-1 1-1Z"></path></svg>',
+    location:
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-5.4 7-12a7 7 0 0 0-14 0c0 6.6 7 12 7 12Z"></path><circle cx="12" cy="9" r="2.5"></circle></svg>',
+    phone:
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.8-.4 1.2-.3 1.3.4 2.6.6 4 .6.7 0 1.2.5 1.2 1.2v3.5c0 .7-.5 1.2-1.2 1.2A18.5 18.5 0 0 1 2.1 3.4c0-.7.5-1.2 1.2-1.2h3.5c.7 0 1.2.5 1.2 1.2 0 1.4.2 2.8.6 4 .1.4 0 .9-.3 1.2l-1.7 2.2Z"></path></svg>',
+    mail:
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m4 7 8 6 8-6"></path></svg>',
+    clock:
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>',
+  };
+  return `<span class="footer-icon">${icons[name] || ""}</span>`;
 }
 
 export function floatingWhatsapp() {
